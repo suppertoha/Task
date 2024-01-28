@@ -13,6 +13,28 @@
 
 .main {
   padding-bottom: 100px;
+  position: relative;
+
+  &__fon{
+    position: absolute;
+    width: 336px;
+    height: 318px;
+    &--left{
+      left: 0px;
+      top: -50px;
+      background: url(../img/fon-left.svg) 0 / 100% no-repeat;
+    }
+
+    &--right{
+      right: 0px;
+      top: -60px;
+      background: url(../img/fon-right.svg) 0 / 100% no-repeat;
+    }
+
+    @include max768 {
+      display: none;
+    }
+  }
 
 
   @include max768 {
@@ -29,11 +51,11 @@
     font-weight: 600;
     color: #fff;
     margin-bottom: 70px;
+    text-align: center;
 
     @include max768 {
       margin-bottom: 30px;
       font-size: 26px;
-      text-align: center;
     }
   }
 
@@ -44,8 +66,6 @@
       flex-wrap: wrap;
       gap: 30px;
     }
-
-
   }
 
   &__card {
