@@ -1,0 +1,165 @@
+
+
+.card {
+  padding: 38px 0px;
+  border-radius: 11.354px;
+  box-shadow: 0px 3.785px 94.621px 0px rgba(0, 0, 0, 0.25);
+  color: #fff;
+  height: inherit;
+
+  @include max768 {
+    padding: 20px 0px;
+  }
+
+  &--green{
+    background: #6A994E;
+  }
+
+  &--black{
+    background: #1D252B;
+    transform: translateY(-30px);
+    margin: 0 -15px;
+
+    @include max768 {
+      transform: translateY(0px);
+      margin: 0px;
+    }
+  }
+
+  &__icon{
+    fill: #BC4749;
+    width: 6px;
+    height: 10px;
+    display: inline-flex;
+    margin-right: 8px;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__header {
+    padding: 0 60px 20px;
+
+    @media screen and (max-width: 860px) {
+      padding: 0 20px 20px;
+    }
+  }
+
+  &__title {
+    display: block;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  &__description {
+    margin-bottom: 15px;
+  }
+
+  &__text {
+    color: rgba(255, 255, 255, 0.80);
+    font-size: 12px;
+  }
+
+  &__body {
+    height: 100%;
+    padding: 25px 60px 0;
+    display: flex;
+    flex-direction: column;
+    &--border-top{
+      border-top: 1px solid #79A360;
+    }
+    @media screen and (max-width: 860px) {
+      padding: 20px 20px 0;
+    }
+  }
+
+  &__subtitle {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 25px;
+  }
+
+  &__list {
+    margin-bottom: 20px;
+  }
+
+  &__item {
+    &:not(:last-child){
+      margin-bottom: 15px;
+    }
+  }
+
+  &__link{
+    transition: 0.3s;
+    @media screen and (min-width: 1024px) {
+      &:hover{
+        transform: translate(0, -2px);
+      }
+
+      &:active{
+        transform: translate(0, -1px);
+      }
+    }
+  }
+
+  &__button {
+    margin-top: auto;
+    width: 100%;
+  }
+}
+.description-card {
+  display: flex;
+  align-items: baseline;
+  padding-bottom: 10px;
+
+  &--easy-green{
+    border-bottom: 1px solid #79A360;
+  }
+
+  &--easy-black{
+    border-bottom: 1px solid #343B40;
+  }
+
+  &__button {
+    transition: 0.3s;
+    align-self: flex-start;
+    color: #FFF;
+    font-size: 11.354px;
+    font-style: normal;
+    font-weight: 500;
+
+    @media screen and (min-width: 1024px) {
+      &:hover{
+        color: #BC4749;
+      }
+    }
+  }
+
+  &__quantity {
+    display: inline-block;
+    font-size: 37.848px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 128.023%;
+  }
+
+  &__info {
+    cursor: pointer;
+    transition: 0.3s;
+    display: inline-block;
+    margin-left: 4px;
+    color: rgba(255, 255, 255, 0.70);
+    transition: 0.3s;
+    @media screen and (min-width: 1024px) {
+      &:hover{
+        color: rgba(255, 255, 255, 1);
+      }
+    }
+  }
+}
