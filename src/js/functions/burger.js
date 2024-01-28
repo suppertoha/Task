@@ -1,53 +1,44 @@
-(function(){
-  const burger = document?.querySelector('[data-burger]');
-  const menu = document?.querySelector('[data-menu]');
-  const menuItems = document?.querySelectorAll('[data-menu-item]');
-  const overlay = document?.querySelector('[data-menu-overlay]');
 
-  burger?.addEventListener('click', (e) => {
-    toggleMenu();
-  });
+(function () {
+  const burger = document.querySelector("[data-burger]");
+  const menu = document.querySelector("[data-menu]");
+  const mainBody = document.querySelector(".page__body");
 
-  overlay?.addEventListener('click', () => {
-    closeMenu();
-  });
 
-  menuItems?.forEach(el => {
-    el.addEventListener('click', () => {
-      closeMenu();
+  if (burger) {
+    burger.addEventListener("click", (e) => {
+      burger.classList.toggle("burger--active");
+      menu.classList.toggle("menu--active");
+      mainBody.classList.toggle("hidden");
+      if (menu.classList.contains("menu--active")) {
+        burger.setAttribute("aria-expanded", "true");
+        burger.setAttribute("aria-label", "Закрыть меню");
+
+      } else {
+        burger.setAttribute("aria-expanded", "false");
+        burger.setAttribute("aria-label", "Открыть меню");
+      }
     });
-  });
+  }
 
-  document.addEventListener('click', (e) => {
-    const target = e.target;
-    const isMenuClicked = menu.contains(target);
-    const isBurgerClicked = burger.contains(target);
-
-    if (!isMenuClicked && !isBurgerClicked) {
+  document.addEventListener("click", (e) => {
+    if (
+      menu &&
+      !menu.contains(e.target) &&
+      burger &&
+      !burger.contains(e.target) &&
+      menu.classList.contains("menu--active")
+    ) {
       closeMenu();
     }
   });
-
-  function toggleMenu() {
-    burger?.classList.toggle('burger--active');
-    menu?.classList.toggle('menu--active');
-
-    if (menu?.classList.contains('menu--active')) {
-      burger?.setAttribute('aria-expanded', 'true');
-      burger?.setAttribute('aria-label', 'Закрыть меню');
-      disableScroll();
-    } else {
-      burger?.setAttribute('aria-expanded', 'false');
-      burger?.setAttribute('aria-label', 'Открыть меню');
-      enableScroll();
-    }
-  }
 
   function closeMenu() {
-    burger?.setAttribute('aria-expanded', 'false');
-    burger?.setAttribute('aria-label', 'Открыть меню');
-    burger.classList.remove('burger--active');
-    menu.classList.remove('menu--active');
-    enableScroll();
+    burger.setAttribute("aria-expanded", "false");
+    burger.setAttribute("aria-label", "Открыть меню");
+    burger.classList.remove("burger--active");
+    menu.classList.remove("menu--active");
+    mainBody.classList.remove("hidden");
   }
 })();
+

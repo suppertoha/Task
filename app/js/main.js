@@ -10,17 +10,8 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_burger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/burger */ "./src/js/components/burger.js");
-/* harmony import */ var _components_accordion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/accordion */ "./src/js/components/accordion.js");
-/* harmony import */ var _components_accordion__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_accordion__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_show_more_menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/show-more-menu */ "./src/js/components/show-more-menu.js");
-/* harmony import */ var _components_show_more_menu__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_show_more_menu__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_blockHeightOfTitle__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/blockHeightOfTitle */ "./src/js/components/blockHeightOfTitle.js");
-/* harmony import */ var _components_blockHeightOfTitle__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_components_blockHeightOfTitle__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_goBack__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/goBack */ "./src/js/components/goBack.js");
-/* harmony import */ var _components_goBack__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_components_goBack__WEBPACK_IMPORTED_MODULE_4__);
-
-
-
+/* harmony import */ var _components_card__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/card */ "./src/js/components/card.js");
+/* harmony import */ var _components_card__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_components_card__WEBPACK_IMPORTED_MODULE_1__);
 
 
 
@@ -158,181 +149,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/js/components/accordion.js":
-/*!****************************************!*\
-  !*** ./src/js/components/accordion.js ***!
-  \****************************************/
-/***/ (() => {
-
-document.querySelectorAll(".accordion-start-js").forEach(el => {
-  el.addEventListener("click", () => {
-    const elems = document.querySelectorAll(".accordion-start-js");
-    elems.forEach(elem => {
-      if (elem !== el) {
-        elem.classList.remove("open");
-        elem.nextElementSibling.classList.remove("open");
-      }
-    });
-    el.classList.toggle("open");
-    let content = el.nextElementSibling;
-    if (content.classList.contains("open")) {
-      document.querySelectorAll(".accordion-content-js").forEach(el => {
-        if (content && content.classList.contains("open")) {
-          content.classList.remove("open");
-        }
-      });
-    } else {
-      document.querySelectorAll(".accordion-content-js").forEach(el => {
-        if (content && !content.classList.contains("open")) {
-          content.classList.add("open");
-        }
-      });
-    }
-  });
-});
-
-/***/ }),
-
-/***/ "./src/js/components/blockHeightOfTitle.js":
-/*!*************************************************!*\
-  !*** ./src/js/components/blockHeightOfTitle.js ***!
-  \*************************************************/
-/***/ (() => {
-
-function hideExcessButtons() {
-  function updateButtons() {
-    const cardContents = document.querySelectorAll('.card-concert__content');
-    cardContents.forEach(content => {
-      const containerHeight = content.offsetHeight;
-      const title = content.querySelector('.card-concert__title');
-      const buttons = content.querySelectorAll('.buttons-banner__item');
-      const titleHeight = title.offsetHeight;
-      const buttonsBannerHeight = content.querySelector('.buttons-banner').offsetHeight;
-      let currentHeight = titleHeight;
-      let excessButtons = 0;
-      let itemMoreButtonHeight = 0;
-      const itemMoreButtonsContainer = content.querySelector('.item-more__buttons');
-      const itemMoreButton = content.querySelector('.item-more');
-      const itemMoreNum = content.querySelector('.item-more__num');
-      buttons.forEach(button => {
-        if (button.classList.contains('item-more')) {
-          itemMoreButtonHeight = button.offsetHeight;
-          button.addEventListener('click', () => {
-            const itemMoreInner = content.querySelector('.item-more__inner');
-            itemMoreInner.classList.toggle('active');
-            checkItemMoreInner(itemMoreInner);
-          });
-          const itemMoreClose = button.querySelector('.item-more__close');
-          itemMoreClose.addEventListener('click', event => {
-            event.stopPropagation();
-            const itemMoreInner = content.querySelector('.item-more__inner');
-            itemMoreInner.classList.remove('active');
-            checkItemMoreInner(itemMoreInner);
-          });
-          return;
-        }
-        currentHeight += button.offsetHeight;
-        if (currentHeight > containerHeight - itemMoreButtonHeight) {
-          button.classList.add('hidden-button');
-          excessButtons++;
-          itemMoreButtonsContainer.appendChild(button);
-        }
-      });
-      if (excessButtons > 0) {
-        itemMoreButton.classList.remove('hidden-button');
-        itemMoreNum.textContent = excessButtons;
-      } else {
-        itemMoreButton.classList.add('hidden-button');
-      }
-      function checkItemMoreInner(itemMoreInner) {
-        const isEmpty = !itemMoreInner.querySelector('*');
-        if (isEmpty && excessButtons === 0) {
-          itemMoreButton.classList.add('hidden-button');
-        } else {
-          itemMoreButton.classList.remove('hidden-button');
-        }
-      }
-    });
-  }
-  window.addEventListener('resize', updateButtons);
-  updateButtons();
-}
-hideExcessButtons();
-
-//function hideExcessButtons() {
-//  function updateButtons() {
-//    const cardContents = document.querySelectorAll('.card-concert__content');
-
-//    cardContents.forEach(content => {
-//      const containerHeight = content.offsetHeight;
-//      const title = content.querySelector('.card-concert__title');
-//      const buttons = content.querySelectorAll('.buttons-banner__item');
-//      const titleHeight = title.offsetHeight;
-//      const buttonsBanner = content.querySelector('.buttons-banner');
-//      const buttonsBannerHeight = buttonsBanner.offsetHeight;
-//      const itemMoreButton = content.querySelector('.item-more');
-//      const itemMoreNum = content.querySelector('.item-more__num');
-
-//      let currentHeight = titleHeight;
-//      let excessButtons = 0;
-//      let itemMoreButtonHeight = 0;
-//      const itemMoreButtonsContainer = content.querySelector('.item-more__buttons');
-
-//      buttons.forEach(button => {
-//        if (button.classList.contains('item-more')) {
-//          itemMoreButtonHeight = button.offsetHeight;
-//          button.addEventListener('click', () => {
-//            const itemMoreInner = content.querySelector('.item-more__inner');
-//            itemMoreInner.classList.toggle('active');
-//            checkItemMoreInner(itemMoreInner);
-//          });
-
-//          const itemMoreClose = button.querySelector('.item-more__close');
-//          itemMoreClose.addEventListener('click', (event) => {
-//            event.stopPropagation();
-//            const itemMoreInner = content.querySelector('.item-more__inner');
-//            itemMoreInner.classList.remove('active');
-//            checkItemMoreInner(itemMoreInner);
-//          });
-
-//          return;
-//        }
-
-//        currentHeight += button.offsetHeight;
-//        console.log(buttonsBannerHeight)
-//        if (buttonsBannerHeight > 0) {
-//          button.classList.add('hidden-button');
-//          excessButtons++;
-//          itemMoreButtonsContainer.appendChild(button);
-//        }
-//      });
-
-//      if (excessButtons > 0) {
-//        itemMoreButton.classList.remove('hidden-button');
-//        itemMoreNum.textContent = excessButtons;
-//      } else {
-//        itemMoreButton.classList.add('hidden-button');
-//      }
-
-//      function checkItemMoreInner(itemMoreInner) {
-//        const isEmpty = !itemMoreInner.querySelector('*');
-//        if (isEmpty && excessButtons === 0) {
-//          itemMoreButton.classList.add('hidden-button');
-//        } else {
-//          itemMoreButton.classList.remove('hidden-button');
-//        }
-//      }
-//    });
-//  }
-
-//  window.addEventListener('resize', updateButtons);
-//  updateButtons();
-//}
-
-//hideExcessButtons();
-
-/***/ }),
-
 /***/ "./src/js/components/burger.js":
 /*!*************************************!*\
   !*** ./src/js/components/burger.js ***!
@@ -348,78 +164,56 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/js/components/goBack.js":
-/*!*************************************!*\
-  !*** ./src/js/components/goBack.js ***!
-  \*************************************/
+/***/ "./src/js/components/card.js":
+/*!***********************************!*\
+  !*** ./src/js/components/card.js ***!
+  \***********************************/
 /***/ (() => {
 
-document.querySelectorAll('.go-back').forEach(function (button) {
-  button.addEventListener('click', function () {
-    window.history.back();
+document.addEventListener("DOMContentLoaded", function () {
+  const blockCards = document.querySelector(".main__cards");
+  function showCards() {
+    blockCards.classList.add("showCards");
+  }
+  showCards();
+  const item = document.querySelectorAll(".main__card");
+  const euro = 100;
+  const month = 30;
+  const items = document.querySelector(".main__cards");
+  const quantities = document.querySelectorAll('.description-card__quantity');
+  const info = document.querySelectorAll('.description-card__info');
+  let set = false;
+  blockCards.addEventListener("click", function (e) {
+    if (e.target.classList.contains("description-card__button")) {
+      e.preventDefault();
+      items.classList.toggle("active");
+      item.forEach(item => {
+        item.classList.toggle("active");
+      });
+      if (items.classList.contains('active')) {
+        quantities.forEach(quantity => {
+          const quantityValue = parseInt(quantity.innerText.trim(), 10) * euro;
+          quantity.textContent = quantityValue;
+        });
+      } else {
+        quantities.forEach(quantity => {
+          const quantityValue = parseInt(quantity.innerText.trim(), 10) / euro;
+          quantity.textContent = quantityValue;
+        });
+      }
+    }
+    if (e.target.classList.contains("description-card__info")) {
+      info.forEach(item => {
+        if (!set) {
+          item.textContent = '/Months';
+        } else {
+          item.textContent = '/Day';
+        }
+      });
+      set = !set; // Инвертируем значение set для следующего клика
+    }
   });
 });
-
-/***/ }),
-
-/***/ "./src/js/components/show-more-menu.js":
-/*!*********************************************!*\
-  !*** ./src/js/components/show-more-menu.js ***!
-  \*********************************************/
-/***/ (() => {
-
-const vLinks = document.querySelector('.visible-links');
-const hLinks = document.querySelector('.hidden-links');
-const btn = document.querySelector('.nav-text');
-const breaks = [];
-const updateNav = () => {
-  const nav = document.querySelector('.header-top__body');
-  const availableSpace = btn && btn.classList.contains('hidden') ? nav.offsetWidth : nav.offsetWidth - (btn && btn.offsetWidth) - 0;
-  if (vLinks && hLinks && btn && nav) {
-    if (vLinks.offsetWidth > availableSpace) {
-      breaks.push(vLinks.offsetWidth);
-      hLinks.insertBefore(vLinks.lastElementChild, hLinks.firstElementChild);
-      if (btn.classList.contains('hidden') && hLinks.children.length > 0) {
-        btn.classList.remove('hidden');
-      }
-    } else {
-      if (availableSpace > breaks[breaks.length - 1]) {
-        vLinks.appendChild(hLinks.firstElementChild);
-        breaks.pop();
-      }
-      if (breaks.length < 1) {
-        btn.classList.add('hidden');
-        hLinks.classList.add('hidden');
-      }
-    }
-    btn.setAttribute('count', breaks.length);
-    if (hLinks.children.length > 0) {
-      btn.textContent = 'Еще';
-      btn.classList.add('active');
-    } else {
-      btn.textContent = '';
-      btn.classList.remove('active');
-    }
-  }
-};
-const toggleHiddenLinks = () => {
-  if (hLinks) {
-    hLinks.classList.toggle('hidden');
-  }
-};
-if (btn) {
-  btn.addEventListener('click', toggleHiddenLinks);
-  document.addEventListener('click', event => {
-    if (!btn.contains(event.target) && hLinks) {
-      hLinks.classList.add('hidden');
-    }
-  });
-}
-if (window) {
-  window.addEventListener('resize', updateNav);
-  window.addEventListener('DOMContentLoaded', updateNav);
-  window.addEventListener('load', updateNav);
-}
 
 /***/ }),
 
@@ -430,48 +224,34 @@ if (window) {
 /***/ (() => {
 
 (function () {
-  const burger = document?.querySelector('[data-burger]');
-  const menu = document?.querySelector('[data-menu]');
-  const menuItems = document?.querySelectorAll('[data-menu-item]');
-  const overlay = document?.querySelector('[data-menu-overlay]');
-  burger?.addEventListener('click', e => {
-    toggleMenu();
-  });
-  overlay?.addEventListener('click', () => {
-    closeMenu();
-  });
-  menuItems?.forEach(el => {
-    el.addEventListener('click', () => {
-      closeMenu();
+  const burger = document.querySelector("[data-burger]");
+  const menu = document.querySelector("[data-menu]");
+  const mainBody = document.querySelector(".page__body");
+  if (burger) {
+    burger.addEventListener("click", e => {
+      burger.classList.toggle("burger--active");
+      menu.classList.toggle("menu--active");
+      mainBody.classList.toggle("hidden");
+      if (menu.classList.contains("menu--active")) {
+        burger.setAttribute("aria-expanded", "true");
+        burger.setAttribute("aria-label", "Закрыть меню");
+      } else {
+        burger.setAttribute("aria-expanded", "false");
+        burger.setAttribute("aria-label", "Открыть меню");
+      }
     });
-  });
-  document.addEventListener('click', e => {
-    const target = e.target;
-    const isMenuClicked = menu.contains(target);
-    const isBurgerClicked = burger.contains(target);
-    if (!isMenuClicked && !isBurgerClicked) {
+  }
+  document.addEventListener("click", e => {
+    if (menu && !menu.contains(e.target) && burger && !burger.contains(e.target) && menu.classList.contains("menu--active")) {
       closeMenu();
     }
   });
-  function toggleMenu() {
-    burger?.classList.toggle('burger--active');
-    menu?.classList.toggle('menu--active');
-    if (menu?.classList.contains('menu--active')) {
-      burger?.setAttribute('aria-expanded', 'true');
-      burger?.setAttribute('aria-label', 'Закрыть меню');
-      disableScroll();
-    } else {
-      burger?.setAttribute('aria-expanded', 'false');
-      burger?.setAttribute('aria-label', 'Открыть меню');
-      enableScroll();
-    }
-  }
   function closeMenu() {
-    burger?.setAttribute('aria-expanded', 'false');
-    burger?.setAttribute('aria-label', 'Открыть меню');
-    burger.classList.remove('burger--active');
-    menu.classList.remove('menu--active');
-    enableScroll();
+    burger.setAttribute("aria-expanded", "false");
+    burger.setAttribute("aria-label", "Открыть меню");
+    burger.classList.remove("burger--active");
+    menu.classList.remove("menu--active");
+    mainBody.classList.remove("hidden");
   }
 })();
 

@@ -483,9 +483,9 @@ a:hover {
   -webkit-box-shadow: 0px 3.785px 94.621px 0px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 3.785px 94.621px 0px rgba(0, 0, 0, 0.25);
   width: 65%;
-  -webkit-transition: 0.3s;
-  -o-transition: 0.3s;
-  transition: 0.3s;
+  -webkit-transition: 0.8s;
+  -o-transition: 0.8s;
+  transition: 0.8s;
   top: -100%;
   opacity: 0;
   visibility: hidden;
@@ -583,8 +583,33 @@ a:hover {
   }
 }
 .main__card {
+  position: relative;
+  z-index: 2;
   width: 33.33333%;
   min-width: 250px;
+  opacity: 0;
+  visibility: hidden;
+}
+.main .showCards .main__card:nth-child(1) {
+  -webkit-transition: 0.8s 300ms;
+  -o-transition: 0.8s 300ms;
+  transition: 0.8s 300ms;
+  opacity: 1;
+  visibility: visible;
+}
+.main .showCards .main__card:nth-child(2) {
+  -webkit-transition: 0.8s 600ms;
+  -o-transition: 0.8s 600ms;
+  transition: 0.8s 600ms;
+  opacity: 1;
+  visibility: visible;
+}
+.main .showCards .main__card:nth-child(3) {
+  -webkit-transition: 0.8s 900ms;
+  -o-transition: 0.8s 900ms;
+  transition: 0.8s 900ms;
+  opacity: 1;
+  visibility: visible;
 }
 
 .card {
@@ -604,6 +629,7 @@ a:hover {
   background: #6A994E;
 }
 .card--black {
+  z-index: 3;
   background: #1D252B;
   -webkit-transform: translateY(-30px);
   -ms-transform: translateY(-30px);
@@ -711,6 +737,12 @@ a:hover {
   margin-top: auto;
   width: 100%;
 }
+.card.active .description-card__button::before {
+  display: none;
+}
+.card.active .description-card__button::after {
+  content: attr(data-text);
+}
 
 .description-card {
   display: -webkit-box;
@@ -737,6 +769,9 @@ a:hover {
   font-size: 11.354px;
   font-style: normal;
   font-weight: 500;
+}
+.description-card__button::before {
+  content: attr(data-text1);
 }
 @media screen and (min-width: 1024px) {
   .description-card__button:hover {
